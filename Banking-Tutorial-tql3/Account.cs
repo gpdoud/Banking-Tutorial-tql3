@@ -11,7 +11,7 @@ public class Account {
 
     private static int nextId { get; set; } = 1;
 
-    public int AccountId { get; set; } = 0;
+    public int AccountId { get; private set; } = 0;
     public string Description { get; set; } = string.Empty;
     public decimal Balance { get; set; } = 0;
 
