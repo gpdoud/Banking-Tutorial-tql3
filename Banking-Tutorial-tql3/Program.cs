@@ -14,7 +14,7 @@ internal class Program {
         Console.WriteLine($"Balance is {a1.Balance:C}");
 
         try {
-            //a1.Withdraw(300);
+            a1.Withdraw(300);
             Console.WriteLine($"Balance is {a1.Balance:C}");
             a1.Deposit(-200);
             Console.WriteLine($"Balance is {a1.Balance:C}");

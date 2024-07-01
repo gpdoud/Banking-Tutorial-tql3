@@ -24,12 +24,23 @@ public class Account {
     }
 
     public bool Withdraw(decimal Amount) {
+        Exception? ex = null;
+        Exception? ex1 = null;
         if(Amount <= 0) {
-            throw new NonPositiveAmountException();
+            ex = new NonPositiveAmountException();
         }
         if(Amount > Balance) {
-            throw new InsufficientFundsException { Amount = Amount, Balance = Balance };
+            if(ex is null) {
+                ex = new InsufficientFundsException { Amount = Amount, Balance = Balance };
+            } else {
+                ex1 = new InsufficientFundsException("Insufficient funds", ex) { 
+                    Amount = Amount, Balance = Balance 
+                };
+            }
         }
+        if(ex1 is not null) throw ex1;
+        if(ex is not null) throw ex;
+
         Balance -= Amount;
         return true;
     }
